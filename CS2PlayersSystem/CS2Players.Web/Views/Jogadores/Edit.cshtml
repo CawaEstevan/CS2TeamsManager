@@ -1,0 +1,97 @@
+@model CS2Players.Application.ViewModels.JogadorViewModel
+
+@{
+    ViewData["Title"] = "Editar Jogador";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card shadow">
+                <div class="card-header bg-warning">
+                    <h4 class="mb-0">
+                        <i class="bi bi-pencil"></i> Editar Jogador
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="DataContratacao" />
+                        
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Nickname" class="form-label"></label>
+                                <input asp-for="Nickname" class="form-control" />
+                                <span asp-validation-for="Nickname" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="NomeCompleto" class="form-label"></label>
+                                <input asp-for="NomeCompleto" class="form-control" />
+                                <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Idade" class="form-label"></label>
+                                <input asp-for="Idade" class="form-control" type="number" min="16" max="40" />
+                                <span asp-validation-for="Idade" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Funcao" class="form-label"></label>
+                                <select asp-for="Funcao" class="form-select">
+                                    <option value="">Selecione uma função</option>
+                                    <option value="AWPer">AWPer</option>
+                                    <option value="Entry Fragger">Entry Fragger</option>
+                                    <option value="Support">Support</option>
+                                    <option value="Lurker">Lurker</option>
+                                    <option value="IGL">IGL (In-Game Leader)</option>
+                                </select>
+                                <span asp-validation-for="Funcao" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Nacionalidade" class="form-label"></label>
+                                <input asp-for="Nacionalidade" class="form-control" />
+                                <span asp-validation-for="Nacionalidade" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Salario" class="form-label"></label>
+                                <input asp-for="Salario" class="form-control" type="number" step="0.01" />
+                                <span asp-validation-for="Salario" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="TimeId" class="form-label"></label>
+                                <select asp-for="TimeId" class="form-select" asp-items="ViewBag.Times">
+                                    <option value="">Selecione um time</option>
+                                </select>
+                                <span asp-validation-for="TimeId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Voltar
+                            </a>
+                            <button type="submit" class="btn btn-warning">
+                                <i class="bi bi-save"></i> Salvar Alterações
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,62 @@
+@model CS2Players.Application.ViewModels.JogadorViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Jogador";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-info-circle"></i> Detalhes do Jogador
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <h3 class="text-primary">@Model.Nickname</h3>
+                        <p class="text-muted">@Model.NomeCompleto</p>
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-4">Idade:</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge bg-secondary">@Model.Idade anos</span>
+                        </dd>
+
+                        <dt class="col-sm-4">Função:</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge bg-info">@Model.Funcao</span>
+                        </dd>
+
+                        <dt class="col-sm-4">Time:</dt>
+                        <dd class="col-sm-8">
+                            <strong>@Model.TimeNome</strong>
+                        </dd>
+
+                        <dt class="col-sm-4">Nacionalidade:</dt>
+                        <dd class="col-sm-8">@Model.Nacionalidade</dd>
+
+                        <dt class="col-sm-4">Salário:</dt>
+                        <dd class="col-sm-8">
+                            <strong class="text-success">R$ @Model.Salario.ToString("N2")</strong>
+                        </dd>
+
+                        <dt class="col-sm-4">Data de Contratação:</dt>
+                        <dd class="col-sm-8">@Model.DataContratacao.ToString("dd/MM/yyyy HH:mm")</dd>
+                    </dl>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

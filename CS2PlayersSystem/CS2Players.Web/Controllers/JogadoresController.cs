@@ -3,45 +3,43 @@ using CS2Players.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace CS2Players.Web.Controllers
+namespace CS2Players.Presentation.Controllers
 {
-    public class JogadoresController : Controller
+    public class JogadorController : Controller
     {
         private readonly IJogadorService _jogadorService;
         private readonly ITimeService _timeService;
 
-        public JogadoresController(IJogadorService jogadorService, ITimeService timeService)
+        public JogadorController(IJogadorService jogadorService, ITimeService timeService)
         {
             _jogadorService = jogadorService;
             _timeService = timeService;
         }
 
-        // GET: Jogadores
         public async Task<IActionResult> Index()
         {
             var jogadores = await _jogadorService.GetAllAsync();
             return View(jogadores);
         }
 
-        // GET: Jogadores/Details/5
+
         public async Task<IActionResult> Details(int id)
         {
             var jogador = await _jogadorService.GetByIdAsync(id);
-            
             if (jogador == null)
+            {
                 return NotFound();
-
+            }
             return View(jogador);
         }
 
-        // GET: Jogadores/Create
+
         public async Task<IActionResult> Create()
         {
             await PopulateTimesDropdown();
             return View();
         }
 
-        // POST: Jogadores/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(JogadorViewModel jogadorViewModel)
@@ -52,30 +50,31 @@ namespace CS2Players.Web.Controllers
                 TempData["Success"] = "Jogador cadastrado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
-            
             await PopulateTimesDropdown(jogadorViewModel.TimeId);
             return View(jogadorViewModel);
         }
 
-        // GET: Jogadores/Edit/5
+
         public async Task<IActionResult> Edit(int id)
         {
             var jogador = await _jogadorService.GetByIdAsync(id);
-            
             if (jogador == null)
+            {
                 return NotFound();
-
+            }
             await PopulateTimesDropdown(jogador.TimeId);
             return View(jogador);
         }
 
-        // POST: Jogadores/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, JogadorViewModel jogadorViewModel)
         {
             if (id != jogadorViewModel.Id)
+            {
                 return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -83,23 +82,22 @@ namespace CS2Players.Web.Controllers
                 TempData["Success"] = "Jogador atualizado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
-            
             await PopulateTimesDropdown(jogadorViewModel.TimeId);
             return View(jogadorViewModel);
         }
 
-        // GET: Jogadores/Delete/5
+
         public async Task<IActionResult> Delete(int id)
         {
             var jogador = await _jogadorService.GetByIdAsync(id);
-            
             if (jogador == null)
+            {
                 return NotFound();
-
+            }
             return View(jogador);
         }
 
-        // POST: Jogadores/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -109,15 +107,18 @@ namespace CS2Players.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Jogadores/Search?termo=...
+
         [HttpGet]
         public async Task<IActionResult> Search(string termo)
         {
             if (string.IsNullOrWhiteSpace(termo))
-                return Json(new List<JogadorViewModel>());
+            {
+                var allJogadores = await _jogadorService.GetAllAsync();
+                return PartialView("_JogadorListPartial", allJogadores);
+            }
 
             var jogadores = await _jogadorService.SearchAsync(termo);
-            return Json(jogadores);
+            return PartialView("_JogadorListPartial", jogadores);
         }
 
         private async Task PopulateTimesDropdown(int? selectedTimeId = null)

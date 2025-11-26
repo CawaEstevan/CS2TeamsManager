@@ -1,0 +1,74 @@
+@model IEnumerable<CS2Players.Application.ViewModels.JogadorViewModel>
+
+@{
+    ViewData["Title"] = "Jogadores";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="mb-3">
+                <i class="bi bi-person-badge text-primary"></i> Gerenciamento de Jogadores
+            </h2>
+        </div>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" class="form-control" id="searchInput" placeholder="Buscar jogadores por nickname, nome ou time...">
+            </div>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Novo Jogador
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div id="jogadoresList">
+                @Html.Partial("_JogadorListPartial", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            let timeoutId;
+            
+            $('#searchInput').on('keyup', function() {
+                clearTimeout(timeoutId);
+                const termo = $(this).val();
+                
+                timeoutId = setTimeout(function() {
+                    $.ajax({
+                        url: '@Url.Action("Search", "Jogador")',
+                        type: 'GET',
+                        data: { termo: termo },
+                        success: function(result) {
+                            $('#jogadoresList').html(result);
+                        },
+                        error: function() {
+                            alert('Erro ao buscar jogadores.');
+                        }
+                    });
+                }, 300);
+            });
+        });
+    </script>
+}
