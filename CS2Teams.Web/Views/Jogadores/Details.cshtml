@@ -1,0 +1,148 @@
+@model CS2Teams.Application.ViewModels.JogadorViewModel
+@{
+    ViewData["Title"] = "Detalhes do Jogador";
+    var idade = DateTime.Now.Year - Model.DataNascimento.Year;
+    if (DateTime.Now < Model.DataNascimento.AddYears(idade)) idade--;
+}
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <h1>👤 Detalhes do Jogador</h1>
+    </div>
+    <div class="col-md-6 text-end">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">✏️ Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h3>@Model.Nickname</h3>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h5>Informações Pessoais</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <th width="40%">Nome Real:</th>
+                                <td>@Model.NomeReal</td>
+                            </tr>
+                            <tr>
+                                <th>Nacionalidade:</th>
+                                <td>@Model.Nacionalidade</td>
+                            </tr>
+                            <tr>
+                                <th>Data de Nascimento:</th>
+                                <td>@Model.DataNascimento.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                            <tr>
+                                <th>Idade:</th>
+                                <td>@idade anos</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h5>Informações de Jogo</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <th width="40%">Time:</th>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(Model.TimeTag))
+                                    {
+                                        <span class="badge bg-dark">@Model.TimeTag</span>
+                                        <span>@Model.TimeNome</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Sem time</span>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Role:</th>
+                                <td>
+                                    @switch (Model.Role)
+                                    {
+                                        case PlayerRole.AWPer:
+                                            <span class="badge bg-danger">AWPer</span>
+                                            <span> - Especialista em AWP</span>
+                                            break;
+                                        case PlayerRole.EntryFragger:
+                                            <span class="badge bg-warning text-dark">Entry Fragger</span>
+                                            <span> - Primeiro a entrar</span>
+                                            break;
+                                        case PlayerRole.Support:
+                                            <span class="badge bg-info">Support</span>
+                                            <span> - Suporte do time</span>
+                                            break;
+                                        case PlayerRole.Lurker:
+                                            <span class="badge bg-secondary">Lurker</span>
+                                            <span> - Joga sozinho</span>
+                                            break;
+                                        case PlayerRole.IGL:
+                                            <span class="badge bg-primary">IGL</span>
+                                            <span> - Líder do time</span>
+                                            break;
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rating:</th>
+                                <td>
+                                    <span class="badge bg-success fs-5">@Model.Rating.ToString("F2")</span>
+                                    @if (Model.Rating >= 1.20m)
+                                    {
+                                        <span class="text-success">⭐ Excelente</span>
+                                    }
+                                    else if (Model.Rating >= 1.00m)
+                                    {
+                                        <span class="text-primary">✓ Bom</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-warning">△ Regular</span>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card bg-light mb-3">
+            <div class="card-body text-center">
+                <h2 class="display-1">🎮</h2>
+                <h5>@Model.Nickname</h5>
+                <p class="text-muted">@Model.NomeReal</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Ações</h6>
+                <div class="d-grid gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                        ✏️ Editar Jogador
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                        🗑️ Excluir Jogador
+                    </a>
+                    @if (Model.TimeId > 0)
+                    {
+                        <a asp-controller="Times" asp-action="Details" asp-route-id="@Model.TimeId" 
+                           class="btn btn-info">
+                            👥 Ver Time
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

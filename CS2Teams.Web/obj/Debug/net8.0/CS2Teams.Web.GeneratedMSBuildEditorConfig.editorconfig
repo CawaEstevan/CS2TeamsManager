@@ -1,0 +1,95 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = CS2Teams.Web
+build_property.RootNamespace = CS2Teams.Web
+build_property.ProjectDir = /workspaces/CS2TeamsManager/CS2Teams.Web/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = /workspaces/CS2TeamsManager/CS2Teams.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Jogadores/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSm9nYWRvcmVzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Jogadores/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSm9nYWRvcmVzL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Jogadores/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSm9nYWRvcmVzL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Jogadores/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSm9nYWRvcmVzL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Jogadores/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSm9nYWRvcmVzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Jogadores/_JogadoresListPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSm9nYWRvcmVzL19Kb2dhZG9yZXNMaXN0UGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Times/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGltZXMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Times/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGltZXMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Times/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGltZXMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Times/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGltZXMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Times/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGltZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Times/_TimesListPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGltZXMvX1RpbWVzTGlzdFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/CS2TeamsManager/CS2Teams.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-4ihooidrx8

@@ -1,0 +1,33 @@
+@model IEnumerable<CS2Teams.Application.ViewModels.JogadorViewModel>
+@{
+    ViewData["Title"] = "Jogadores";
+}
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <h1>🎮 Jogadores de CS2</h1>
+    </div>
+    <div class="col-md-6 text-end">
+        <a asp-action="Create" class="btn btn-primary">
+            ➕ Novo Jogador
+        </a>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" id="searchInput" class="form-control" 
+                   placeholder="Buscar por nickname, nome, nacionalidade ou time..." />
+            <button class="btn btn-outline-secondary" type="button" id="clearSearch">Limpar</button>
+        </div>
+    </div>
+</div>
+
+<div id="jogadoresContainer">
+    <partial name="_JogadoresListPartial" model="Model" />
+</div>
+
+@section Scripts {
+    <script src="~/js/jogadores-search.js"></script>
+}

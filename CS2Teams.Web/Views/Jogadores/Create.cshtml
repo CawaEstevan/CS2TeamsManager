@@ -1,0 +1,94 @@
+@model CS2Teams.Application.ViewModels.JogadorViewModel
+@{
+    ViewData["Title"] = "Criar Jogador";
+}
+
+<h1>➕ Criar Novo Jogador</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Nickname" class="form-label"></label>
+                    <input asp-for="Nickname" class="form-control" placeholder="Ex: s1mple" />
+                    <span asp-validation-for="Nickname" class="text-danger"></span>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NomeReal" class="form-label"></label>
+                    <input asp-for="NomeReal" class="form-control" placeholder="Ex: Oleksandr Kostyliev" />
+                    <span asp-validation-for="NomeReal" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Nacionalidade" class="form-label"></label>
+                    <input asp-for="Nacionalidade" class="form-control" placeholder="Ex: Ucrânia" />
+                    <span asp-validation-for="Nacionalidade" class="text-danger"></span>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label asp-for="DataNascimento" class="form-label"></label>
+                    <input asp-for="DataNascimento" class="form-control" type="date" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label asp-for="TimeId" class="form-label"></label>
+                    <select asp-for="TimeId" class="form-select" asp-items="ViewBag.Times">
+                        <option value="">Selecione um time</option>
+                    </select>
+                    <span asp-validation-for="TimeId" class="text-danger"></span>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <label asp-for="Role" class="form-label"></label>
+                    <select asp-for="Role" class="form-select" asp-items="ViewBag.Roles">
+                        <option value="">Selecione uma role</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <label asp-for="Rating" class="form-label"></label>
+                    <input asp-for="Rating" class="form-control" type="number" 
+                           step="0.01" min="0" max="2" placeholder="0.00 - 2.00" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                    <small class="form-text text-muted">Rating entre 0.00 e 2.00</small>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">💾 Criar</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h5 class="card-title">ℹ️ Informações</h5>
+                <p class="card-text">
+                    <strong>Roles disponíveis:</strong><br/>
+                    <span class="badge bg-danger">AWPer</span> - Especialista em AWP<br/>
+                    <span class="badge bg-warning text-dark">Entry</span> - Primeiro a entrar<br/>
+                    <span class="badge bg-info">Support</span> - Suporte do time<br/>
+                    <span class="badge bg-secondary">Lurker</span> - Joga sozinho<br/>
+                    <span class="badge bg-primary">IGL</span> - Líder do time
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

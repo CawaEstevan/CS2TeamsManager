@@ -1,0 +1,81 @@
+@model CS2Teams.Application.ViewModels.TimeViewModel
+@{
+    ViewData["Title"] = "Excluir Time";
+}
+
+<h1 class="text-danger">🗑️ Excluir Time</h1>
+<hr />
+
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">⚠️ Atenção!</h4>
+    <p>Você está prestes a excluir o time <strong>@Model.Nome</strong>.</p>
+    <hr>
+    <p class="mb-0">Esta ação é <strong>irreversível</strong> e também excluirá todos os <strong>@Model.Jogadores.Count jogador(es)</strong> associados a este time!</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            @if (!string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <img src="@Model.LogoUrl" class="card-img-top p-3" alt="@Model.Nome" style="height: 200px; object-fit: contain;">
+            }
+            <div class="card-body">
+                <h4 class="card-title text-center">
+                    <span class="badge bg-dark">@Model.Tag</span> @Model.Nome
+                </h4>
+                
+                <dl class="row mt-3">
+                    <dt class="col-sm-4">País:</dt>
+                    <dd class="col-sm-8">@Model.Pais</dd>
+
+                    <dt class="col-sm-4">Fundação:</dt>
+                    <dd class="col-sm-8">@Model.DataFundacao.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-4">Ranking:</dt>
+                    <dd class="col-sm-8">#@Model.Ranking</dd>
+
+                    <dt class="col-sm-4">Jogadores:</dt>
+                    <dd class="col-sm-8">@Model.Jogadores.Count</dd>
+                </dl>
+
+                @if (Model.Jogadores.Any())
+                {
+                    <div class="alert alert-warning mt-3">
+                        <strong>Jogadores que serão excluídos:</strong>
+                        <ul class="mb-0 mt-2">
+                            @foreach (var jogador in Model.Jogadores)
+                            {
+                                <li>@jogador.Nickname (@jogador.NomeReal)</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h5>Confirmação de Exclusão</h5>
+            </div>
+            <div class="card-body">
+                <p>Tem certeza que deseja excluir este time?</p>
+                
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger btn-lg">
+                            🗑️ Sim, Excluir Permanentemente
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary btn-lg">
+                            ❌ Não, Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

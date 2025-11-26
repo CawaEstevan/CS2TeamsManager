@@ -1,0 +1,79 @@
+@model CS2Teams.Application.ViewModels.TimeViewModel
+@{
+    ViewData["Title"] = "Editar Time";
+}
+
+<h1>✏️ Editar Time</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Nome" class="form-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Tag" class="form-label"></label>
+                <input asp-for="Tag" class="form-control" style="text-transform: uppercase;" />
+                <span asp-validation-for="Tag" class="text-danger"></span>
+                <small class="form-text text-muted">2-5 caracteres maiúsculos (ex: NAVI, FAZE)</small>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Pais" class="form-label"></label>
+                <input asp-for="Pais" class="form-control" />
+                <span asp-validation-for="Pais" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DataFundacao" class="form-label"></label>
+                <input asp-for="DataFundacao" class="form-control" type="date" />
+                <span asp-validation-for="DataFundacao" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="LogoUrl" class="form-label"></label>
+                <input asp-for="LogoUrl" class="form-control" />
+                <span asp-validation-for="LogoUrl" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Ranking" class="form-label"></label>
+                <input asp-for="Ranking" class="form-control" type="number" min="1" max="100" />
+                <span asp-validation-for="Ranking" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-warning">💾 Salvar Alterações</button>
+                <a asp-action="Index" class="btn btn-secondary">❌ Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5>ℹ️ Pré-visualização</h5>
+            </div>
+            <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model.LogoUrl))
+                {
+                    <img src="@Model.LogoUrl" class="img-fluid mb-3" alt="Logo Preview" style="max-height: 200px;">
+                }
+                <h4><span class="badge bg-dark">@Model.Tag</span> @Model.Nome</h4>
+                <p class="mb-1"><strong>País:</strong> @Model.Pais</p>
+                <p class="mb-1"><strong>Ranking:</strong> #@Model.Ranking</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

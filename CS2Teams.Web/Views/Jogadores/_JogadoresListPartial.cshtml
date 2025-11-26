@@ -1,0 +1,85 @@
+@model IEnumerable<CS2Teams.Application.ViewModels.JogadorViewModel>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Nenhum jogador encontrado.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nickname</th>
+                    <th>Nome Real</th>
+                    <th>Time</th>
+                    <th>Role</th>
+                    <th>Rating</th>
+                    <th>Nacionalidade</th>
+                    <th>Idade</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var jogador in Model)
+                {
+                    var idade = DateTime.Now.Year - jogador.DataNascimento.Year;
+                    if (DateTime.Now < jogador.DataNascimento.AddYears(idade)) idade--;
+                    
+                    <tr>
+                        <td>
+                            <strong>@jogador.Nickname</strong>
+                        </td>
+                        <td>@jogador.NomeReal</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(jogador.TimeTag))
+                            {
+                                <span class="badge bg-dark">@jogador.TimeTag</span>
+                                <span>@jogador.TimeNome</span>
+                            }
+                        </td>
+                        <td>
+                            @switch (jogador.Role)
+                            {
+                                case PlayerRole.AWPer:
+                                    <span class="badge bg-danger">AWPer</span>
+                                    break;
+                                case PlayerRole.EntryFragger:
+                                    <span class="badge bg-warning text-dark">Entry</span>
+                                    break;
+                                case PlayerRole.Support:
+                                    <span class="badge bg-info">Support</span>
+                                    break;
+                                case PlayerRole.Lurker:
+                                    <span class="badge bg-secondary">Lurker</span>
+                                    break;
+                                case PlayerRole.IGL:
+                                    <span class="badge bg-primary">IGL</span>
+                                    break;
+                            }
+                        </td>
+                        <td>
+                            <span class="badge bg-success">@jogador.Rating.ToString("F2")</span>
+                        </td>
+                        <td>@jogador.Nacionalidade</td>
+                        <td>@idade anos</td>
+                        <td class="text-center">
+                            <a asp-action="Details" asp-route-id="@jogador.Id" 
+                               class="btn btn-sm btn-info" title="Detalhes">
+                                👁️
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@jogador.Id" 
+                               class="btn btn-sm btn-warning" title="Editar">
+                                ✏️
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@jogador.Id" 
+                               class="btn btn-sm btn-danger" title="Excluir">
+                                🗑️
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

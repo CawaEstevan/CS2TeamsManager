@@ -1,0 +1,118 @@
+@model CS2Teams.Application.ViewModels.TimeViewModel
+@{
+    ViewData["Title"] = "Detalhes do Time";
+}
+
+<div class="row mb-3">
+    <div class="col">
+        <h1>🏆 Detalhes do Time</h1>
+    </div>
+    <div class="col text-end">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">✏️ Editar</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">🗑️ Excluir</a>
+        <a asp-action="Index" class="btn btn-secondary">🔙 Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            @if (!string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <img src="@Model.LogoUrl" class="card-img-top p-4" alt="@Model.Nome" style="height: 300px; object-fit: contain;">
+            }
+            else
+            {
+                <div class="card-img-top d-flex align-items-center justify-content-center bg-light" style="height: 300px;">
+                    <span class="text-muted fs-1">🎮</span>
+                </div>
+            }
+            <div class="card-body">
+                <h3 class="card-title text-center">
+                    <span class="badge bg-dark fs-5">@Model.Tag</span>
+                </h3>
+                <h4 class="text-center">@Model.Nome</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card mb-3">
+            <div class="card-header bg-primary text-white">
+                <h5>📊 Informações do Time</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <strong>🌍 País:</strong> @Model.Pais
+                    </div>
+                    <div class="col-md-6">
+                        <strong>📅 Data de Fundação:</strong> @Model.DataFundacao.ToString("dd/MM/yyyy")
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <strong>🏅 Ranking Mundial:</strong> <span class="badge bg-warning text-dark fs-6">#@Model.Ranking</span>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>👥 Total de Jogadores:</strong> <span class="badge bg-success fs-6">@Model.Jogadores.Count</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">👥 Elenco (@Model.Jogadores.Count jogadores)</h5>
+                <a asp-controller="Jogadores" asp-action="Create" asp-route-timeId="@Model.Id" class="btn btn-sm btn-light">➕ Adicionar Jogador</a>
+            </div>
+            <div class="card-body">
+                @if (Model.Jogadores.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nickname</th>
+                                    <th>Nome Real</th>
+                                    <th>Nacionalidade</th>
+                                    <th>Role</th>
+                                    <th>Rating</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var jogador in Model.Jogadores.OrderByDescending(j => j.Rating))
+                                {
+                                    <tr>
+                                        <td><strong>@jogador.Nickname</strong></td>
+                                        <td>@jogador.NomeReal</td>
+                                        <td>@jogador.Nacionalidade</td>
+                                        <td><span class="badge bg-info">@jogador.Role</span></td>
+                                        <td>
+                                            <span class="badge @(jogador.Rating >= 1.20m ? "bg-success" : jogador.Rating >= 1.00m ? "bg-warning text-dark" : "bg-danger")">
+                                                @jogador.Rating.ToString("0.00")
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Jogadores" asp-action="Details" asp-route-id="@jogador.Id" class="btn btn-sm btn-info" title="Detalhes">👁️</a>
+                                            <a asp-controller="Jogadores" asp-action="Edit" asp-route-id="@jogador.Id" class="btn btn-sm btn-warning" title="Editar">✏️</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <strong>ℹ️ Nenhum jogador cadastrado ainda.</strong>
+                        <br>
+                        <a asp-controller="Jogadores" asp-action="Create" asp-route-timeId="@Model.Id" class="btn btn-sm btn-primary mt-2">➕ Adicionar Primeiro Jogador</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

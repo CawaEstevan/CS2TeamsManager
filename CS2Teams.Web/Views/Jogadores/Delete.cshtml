@@ -1,0 +1,108 @@
+@model CS2Teams.Application.ViewModels.JogadorViewModel
+@{
+    ViewData["Title"] = "Excluir Jogador";
+    var idade = DateTime.Now.Year - Model.DataNascimento.Year;
+    if (DateTime.Now < Model.DataNascimento.AddYears(idade)) idade--;
+}
+
+<h1 class="text-danger">🗑️ Excluir Jogador</h1>
+<hr />
+
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">⚠️ Atenção!</h4>
+    <p>Você está prestes a excluir permanentemente este jogador. Esta ação não pode ser desfeita.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h3>@Model.Nickname</h3>
+            </div>
+            <div class="card-body">
+                <h5>Confirme os dados antes de excluir:</h5>
+                
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-5">Nome Real:</dt>
+                            <dd class="col-sm-7">@Model.NomeReal</dd>
+                            
+                            <dt class="col-sm-5">Nacionalidade:</dt>
+                            <dd class="col-sm-7">@Model.Nacionalidade</dd>
+                            
+                            <dt class="col-sm-5">Idade:</dt>
+                            <dd class="col-sm-7">@idade anos</dd>
+                        </dl>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Time:</dt>
+                            <dd class="col-sm-8">
+                                @if (!string.IsNullOrEmpty(Model.TimeTag))
+                                {
+                                    <span class="badge bg-dark">@Model.TimeTag</span>
+                                    <span>@Model.TimeNome</span>
+                                }
+                            </dd>
+                            
+                            <dt class="col-sm-4">Role:</dt>
+                            <dd class="col-sm-8">
+                                @switch (Model.Role)
+                                {
+                                    case PlayerRole.AWPer:
+                                        <span class="badge bg-danger">AWPer</span>
+                                        break;
+                                    case PlayerRole.EntryFragger:
+                                        <span class="badge bg-warning text-dark">Entry</span>
+                                        break;
+                                    case PlayerRole.Support:
+                                        <span class="badge bg-info">Support</span>
+                                        break;
+                                    case PlayerRole.Lurker:
+                                        <span class="badge bg-secondary">Lurker</span>
+                                        break;
+                                    case PlayerRole.IGL:
+                                        <span class="badge bg-primary">IGL</span>
+                                        break;
+                                }
+                            </dd>
+                            
+                            <dt class="col-sm-4">Rating:</dt>
+                            <dd class="col-sm-8">
+                                <span class="badge bg-success">@Model.Rating.ToString("F2")</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                
+                <form asp-action="Delete" method="post" class="mt-4">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">
+                        🗑️ Confirmar Exclusão
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        ❌ Cancelar
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <h5 class="card-title">⚠️ Importante</h5>
+                <p class="card-text">
+                    Ao excluir este jogador:
+                </p>
+                <ul>
+                    <li>Todos os dados serão removidos</li>
+                    <li>Esta ação é permanente</li>
+                    <li>Não será possível recuperar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
