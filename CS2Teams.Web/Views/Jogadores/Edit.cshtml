@@ -1,9 +1,0 @@
-@model CS2Teams.Application.ViewModels.JogadorViewModel
-
-<h2>@ViewBag.Title</h2>
-
-<form asp-action="@ViewContext.RouteData.Values["action"]" method="post">
-    @Html.AntiForgeryToken()
-    <partial name="_JogadorForm" />
-    <button type="submit" class="btn btn-success">Salvar</button>
-</form>
