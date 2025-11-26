@@ -1,0 +1,16 @@
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.Application.csproj.AssemblyReference.cache
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.Application.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.Application.AssemblyInfoInputs.cache
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.Application.AssemblyInfo.cs
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.Application.csproj.CoreCompileInputs.cache
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.Application.sourcelink.json
+/workspaces/CS2TeamsManager/CS2Teams.Application/bin/Debug/net8.0/CS2Teams.Application.deps.json
+/workspaces/CS2TeamsManager/CS2Teams.Application/bin/Debug/net8.0/CS2Teams.Application.dll
+/workspaces/CS2TeamsManager/CS2Teams.Application/bin/Debug/net8.0/CS2Teams.Application.pdb
+/workspaces/CS2TeamsManager/CS2Teams.Application/bin/Debug/net8.0/CS2Teams.Domain.dll
+/workspaces/CS2TeamsManager/CS2Teams.Application/bin/Debug/net8.0/CS2Teams.Domain.pdb
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.03EFEDF5.Up2Date
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.Application.dll
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/refint/CS2Teams.Application.dll
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/CS2Teams.Application.pdb
+/workspaces/CS2TeamsManager/CS2Teams.Application/obj/Debug/net8.0/ref/CS2Teams.Application.dll

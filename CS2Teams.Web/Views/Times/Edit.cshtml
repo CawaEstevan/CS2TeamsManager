@@ -1,0 +1,10 @@
+@model CS2Teams.Application.ViewModels.TimeViewModel
+
+<h2>Editar Time</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <partial name="_TimeForm" />
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

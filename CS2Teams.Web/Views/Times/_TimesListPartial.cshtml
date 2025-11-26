@@ -1,0 +1,32 @@
+@model IEnumerable<CS2Teams.Application.ViewModels.TimeViewModel>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ranking</th>
+            <th>Nome</th>
+            <th>Tag</th>
+            <th>País</th>
+            <th>Jogadores</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Ranking</td>
+                <td>@t.Nome</td>
+                <td>@t.Tag</td>
+                <td>@t.Pais</td>
+                <td>@t.Jogadores.Count</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="/Times/Details/@t.Id">Detalhes</a>
+                    <a class="btn btn-sm btn-primary" href="/Times/Edit/@t.Id">Editar</a>
+                    <a class="btn btn-sm btn-danger" href="/Times/Delete/@t.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

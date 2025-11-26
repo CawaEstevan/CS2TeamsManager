@@ -1,0 +1,9 @@
+@model CS2Teams.Application.ViewModels.TimeViewModel
+
+<h2>Criar Time</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <partial name="_TimeForm" />
+    <button type="submit" class="btn btn-success">Salvar</button>
+</form>

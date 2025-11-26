@@ -1,0 +1,36 @@
+@model IEnumerable<CS2Teams.Application.ViewModels.JogadorViewModel>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nickname</th>
+            <th>Nome</th>
+            <th>Nacionalidade</th>
+            <th>Idade</th>
+            <th>Role</th>
+            <th>Time</th>
+            <th>Rating</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var j in Model)
+        {
+            <tr>
+                <td>@j.Nickname</td>
+                <td>@j.NomeReal</td>
+                <td>@j.Nacionalidade</td>
+                <td>@j.Idade</td>
+                <td>@j.Role</td>
+                <td>@j.TimeNome</td>
+                <td>@j.Rating</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="/Jogadores/Details/@j.Id">Detalhes</a>
+                    <a class="btn btn-sm btn-primary" href="/Jogadores/Edit/@j.Id">Editar</a>
+                    <a class="btn btn-sm btn-danger" href="/Jogadores/Delete/@j.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

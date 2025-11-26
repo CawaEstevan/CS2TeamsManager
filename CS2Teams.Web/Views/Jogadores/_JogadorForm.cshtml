@@ -1,0 +1,43 @@
+@model CS2Teams.Application.ViewModels.JogadorViewModel
+
+<div class="mb-3">
+    <label asp-for="Nickname"></label>
+    <input asp-for="Nickname" class="form-control"/>
+    <span asp-validation-for="Nickname" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="NomeReal"></label>
+    <input asp-for="NomeReal" class="form-control"/>
+    <span asp-validation-for="NomeReal" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Nacionalidade"></label>
+    <input asp-for="Nacionalidade" class="form-control"/>
+    <span asp-validation-for="Nacionalidade" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="DataNascimento"></label>
+    <input asp-for="DataNascimento" type="date" class="form-control"/>
+    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Role"></label>
+    <select asp-for="Role" class="form-control" asp-items="ViewBag.Roles"></select>
+    <span asp-validation-for="Role" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Rating"></label>
+    <input asp-for="Rating" class="form-control"/>
+    <span asp-validation-for="Rating" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="TimeId"></label>
+    <select asp-for="TimeId" class="form-control" asp-items="ViewBag.Times"></select>
+    <span asp-validation-for="TimeId" class="text-danger"></span>
+</div>
